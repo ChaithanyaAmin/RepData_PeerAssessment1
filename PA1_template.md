@@ -39,16 +39,18 @@ Here is the median of the total number of steps taken per day:
 median(activity_total_steps$steps)
 ## [1] 10395
 
-## 2. What is the average daily activity pattern?
+![PLOT](https://user-images.githubusercontent.com/107402251/192142891-37aef3cb-92e9-4dc3-83c0-cab191cec9a1.png)
+2. What is the average daily activity pattern?
 Make a time series plot (i.e. type = “l”) of the 5-minute interval (x-axis) and the average number of steps taken, averaged across all days (y-axis)
 average_daily_activity <- aggregate(activity$steps, by=list(activity$interval), FUN=mean, na.rm=TRUE)
 names(average_daily_activity) <- c("interval", "mean")
 plot(average_daily_activity$interval, average_daily_activity$mean, type = "l", col="darkblue", lwd = 2, xlab="Interval", ylab="Average number of steps", main="Average number of steps per intervals")
+![avgsteps](https://user-images.githubusercontent.com/107402251/192142929-505663f4-05cb-4de6-aa1d-cd0609624d55.png)
+
 Which 5-minute interval, on average across all the days in the dataset, contains the maximum number of steps?
 average_daily_activity[which.max(average_daily_activity$mean), ]$interval
 ## [1] 835
-
-## 3. Imputing missing values
+3. Imputing missing values
 There are a number of days/intervals where there are missing values (coded as NA). The presence of missing days may introduce bias into some calculations or summaries of the data.
 
 Calculate and report the total number of missing values in the dataset (i.e. the total number of rows with NAs)
@@ -66,6 +68,7 @@ names(total_steps_imputed) <- c("date", "daily_steps")
 Make a histogram of the total number of steps taken each day and Calculate and report the mean and median total number of steps taken per day. Do these values differ from the estimates from the first part of the assignment? What is the impact of imputing missing data on the estimates of the total daily number of steps?
 
 hist(total_steps_imputed$daily_steps, col = "darkblue", xlab = "Total steps per day", ylim = c(0,30), main = "Total number of steps taken each day", breaks = seq(0,25000,by=2500))
+![totalsteps](https://user-images.githubusercontent.com/107402251/192142967-c351ba2e-10ec-418c-88e8-fe0f3bcf5a63.png)
 Here is the mean of the total number of steps taken per day:
 
 mean(total_steps_imputed$daily_steps)
@@ -91,8 +94,6 @@ plot<- ggplot(activity_by_date, aes(x = interval , y = steps, color = datetype))
        geom_line() +
        labs(title = "Average daily steps by type of date", x = "Interval", y = "Average number of steps") +
        facet_wrap(~datetype, ncol = 1, nrow=2)
-print(plot)
-![PLOT](https://user-images.githubusercontent.com/107402251/192142783-dd72d2bf-a722-4333-b89e-eb6dc5959821.png)
-![avgsteps](https://user-images.githubusercontent.com/107402251/192142789-8cbe77c5-1e17-40a1-a9df-ddc450c4c600.png)
-![totalsteps](https://user-images.githubusercontent.com/107402251/192142796-b9cdb98c-d342-49c4-ad33-b4bf8de26e11.png)
-![avgdailysteps](https://user-images.githubusercontent.com/107402251/192142802-023e9863-f994-4eb4-a51f-d6954ee690a0.png)
+print(plot)![avgdailysteps](https://user-images.githubusercontent.com/107402251/192143003-55118869-d710-4bef-bb85-3e3748721a9c.png)
+
+
